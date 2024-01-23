@@ -40,4 +40,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
 Route::controller(CategoryController::class)->prefix('category')->middleware(['admin'])->group(function () {
     Route::get('/', 'index')->name('category.index');
     Route::post('/', 'store')->name('category.store');
+    Route::post('/{category}/destroy', 'destroy')->name('category.destroy');
+    Route::post('/{category}/update', 'update')->name('category.update');
+    Route::get('/{category}/edit', 'edit')->name('category.edit');
 });
