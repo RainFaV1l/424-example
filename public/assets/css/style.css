@@ -126,3 +126,32 @@ button {
 .error-text {
     color: red;
 }
+
+.category__container {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.category__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.category__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category__item {
+    padding: 15px 30px;
+    background-color: antiquewhite;
+    color: var(--dark);
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+}

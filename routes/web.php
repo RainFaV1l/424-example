@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -15,9 +17,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// Route::get('/', function() {
+//     return view('pages.index');
+// });
+
 Route::get('/', [TaskController::class, 'index'])->name('task.index');
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
 //Route::get('/login', [UserController::class, 'login'])->name('user.login');
 //Route::get('/register', [UserController::class, 'register'])->name('user.register');
+
+// Route::namespace('')->
 
 Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::get('/register', 'loginPage')->name('user.loginPage');
@@ -25,4 +34,10 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::post('/register', 'register')->name('user.register');
     Route::post('/login', 'login')->name('user.login');
     Route::post('/logout', 'logout')->name('user.logout');
+});
+
+
+Route::controller(CategoryController::class)->prefix('category')->middleware(['admin'])->group(function () {
+    Route::get('/', 'index')->name('category.index');
+    Route::post('/', 'store')->name('category.store');
 });

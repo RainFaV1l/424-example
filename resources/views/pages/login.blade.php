@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+<!-- @section('title') Авторизация @endsection('title') -->
+@section('title', 'Авторизация')
+
 @section('content')
     <div class="login">
         <div class="login__container container">
