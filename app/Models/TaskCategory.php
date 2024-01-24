@@ -9,4 +9,8 @@ class TaskCategory extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function tasks() {
+        return $this->hasMany(Task::class, 'task_categories_id', 'id');
+    }
 }

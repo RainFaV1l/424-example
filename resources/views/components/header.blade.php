@@ -1,12 +1,12 @@
 <header class="header">
     <div class="header__container container">
         <div class="header__logo logo">
-            <a class="logo__logo" href="{{ route('task.index') }}">Logo</a>
+            <a class="logo__logo" href="{{ route('index.index') }}">Logo</a>
         </div>
         <nav class="header__nav">
             <ul class="header__menu menu">
-                <li class="menu__item"><a href="#" class="menu__link">Главная</a></li>
-                <li class="menu__item"><a href="#" class="menu__link">Задачи</a></li>
+                <li class="menu__item"><a href="{{ route('index.index') }}" class="menu__link">Главная</a></li>
+                <li class="menu__item"><a href="{{ route('tasks.index') }}" class="menu__link">Задачи</a></li>
                 @auth
                     @if(auth()->user()->role_id === 3)
                         <li class="menu__item"><a href="{{ route('category.index') }}" class="menu__link">Категории</a></li>

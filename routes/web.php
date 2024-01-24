@@ -21,8 +21,8 @@ use App\Http\Controllers\UserController;
 //     return view('pages.index');
 // });
 
-Route::get('/', [TaskController::class, 'index'])->name('task.index');
-Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
+//Route::get('/', [TaskController::class, 'index'])->name('task.index');
+//Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
 //Route::get('/login', [UserController::class, 'login'])->name('user.login');
 //Route::get('/register', [UserController::class, 'register'])->name('user.register');
 
@@ -43,4 +43,17 @@ Route::controller(CategoryController::class)->prefix('category')->middleware(['a
     Route::post('/{category}/destroy', 'destroy')->name('category.destroy');
     Route::post('/{category}/update', 'update')->name('category.update');
     Route::get('/{category}/edit', 'edit')->name('category.edit');
+});
+
+Route::controller(\App\Http\Controllers\IndexController::class)->group(function () {
+    Route::get('/', 'index')->name('index.index');
+});
+
+Route::controller(TaskController::class)->prefix('tasks')->group(function () {
+    Route::get('/', 'index')->name('tasks.index');
+    Route::get('/create', 'create')->name('tasks.create');
+    Route::post('/', 'store')->name('tasks.store');
+    Route::get('/{task}', 'show')->name('tasks.show');
+    Route::get('/{task}/edit', 'edit')->name('tasks.edit');
+    Route::post('/{task}', 'update')->name('tasks.update');
 });

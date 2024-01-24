@@ -167,3 +167,127 @@ button {
     display: flex;
     gap: 15px;
 }
+
+.start-page__container {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.start-page__header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.start-page-content__image {
+    height: 500px;
+}
+
+.start-page-content__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.task__container {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.task__list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.task__item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 30px;
+    border-radius: 7px;
+}
+
+.task__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task__image {
+    height: 150px;
+    width: 150px;
+}
+
+.task__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.task__category {
+    color: cornflowerblue;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.task__description {
+    font-size: 16px;
+}
+
+.task__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+textarea {
+    height: 300px;
+    resize: none;
+}
+
+textarea, select {
+    border: none;
+    font: inherit;
+    background-color: white;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+}
+
+input {
+    font: inherit;
+}
+
+.task__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.task__form input, .task__form textarea, .task__form select {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.task-form-file {
+    padding: 30px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    color: cornflowerblue;
+    font-weight: 500;
+}

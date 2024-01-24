@@ -28,7 +28,7 @@ class UserController extends Controller
 
 //        Auth::login($user);
 
-        return redirect()->route('task.index');
+        return redirect()->route('index.index');
 
     }
 
@@ -49,7 +49,7 @@ class UserController extends Controller
 
         }
 
-        return redirect()->route('task.index');
+        return redirect()->route('index.index');
 
     }
 
