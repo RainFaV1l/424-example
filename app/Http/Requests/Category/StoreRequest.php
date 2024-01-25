@@ -11,7 +11,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->role_id === 3;
+        return auth()->user() && auth()->user()->role_id === 3;
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Requests\Category\StoreRequest;
 use App\Http\Requests\Category\UpdateRequest;
 use App\Models\Task;
 use App\Models\TaskCategory;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
 
     public function index() {
 
-        $categories = TaskCategory::all();
+        $categories = TaskCategory::query()->orderByDesc('created_at')->get();
 
         return view('pages.category', compact('categories'));
 
@@ -40,6 +41,16 @@ class CategoryController extends Controller
     public function destroy(TaskCategory $category) {
 
 //        TaskCategory::query()->where('id', $id)->delete();
+
+        foreach ($category->tasks as $task) {
+
+            if(Storage::fileExists($task->task_image_path)) {
+
+                Storage::delete($task->task_image_path);
+
+            }
+
+        }
 
         $category->delete();
 

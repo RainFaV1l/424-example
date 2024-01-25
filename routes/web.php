@@ -49,11 +49,13 @@ Route::controller(\App\Http\Controllers\IndexController::class)->group(function 
     Route::get('/', 'index')->name('index.index');
 });
 
-Route::controller(TaskController::class)->prefix('tasks')->group(function () {
+Route::controller(TaskController::class)->prefix('tasks')->middleware(['admin'])->group(function () {
     Route::get('/', 'index')->name('tasks.index');
     Route::get('/create', 'create')->name('tasks.create');
     Route::post('/', 'store')->name('tasks.store');
     Route::get('/{task}', 'show')->name('tasks.show');
     Route::get('/{task}/edit', 'edit')->name('tasks.edit');
-    Route::post('/{task}', 'update')->name('tasks.update');
+//    Route::post('/{task}/update', 'update')->name('tasks.update');
+    Route::patch('/{task}', 'update')->name('tasks.update');
+    Route::post('/{task}', 'destroy')->name('tasks.destroy');
 });

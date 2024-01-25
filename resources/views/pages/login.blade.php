@@ -13,7 +13,7 @@
                 <label class="error-text">
                     @error('email') {{ $message }}  @enderror
                 </label>
-                <input class="default-input" type="text" name="password" placeholder="Пароль">
+                <input class="default-input" type="password" name="password" placeholder="Пароль">
                 <label class="error-text">
                     @error('password') {{ $message }}  @enderror
                 </label>

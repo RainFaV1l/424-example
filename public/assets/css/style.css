@@ -208,6 +208,7 @@ button {
 .task__item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 30px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     padding: 30px;
@@ -290,4 +291,45 @@ input {
     cursor: pointer;
     color: cornflowerblue;
     font-weight: 500;
+}
+
+.task__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+.task__row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.logo__logo {
+    font-size: 32px;
+}
+
+.selected-image {
+    height: 200px;
+}
+
+.selected-image img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.task__categories {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.task-categories__item {
+    padding: 15px 30px;
+    border: 1px solid rgba(0, 0, 0, 25%);
+    border-radius: 30px;
+    color: var(--dark);;
 }
