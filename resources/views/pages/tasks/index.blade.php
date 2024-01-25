@@ -32,7 +32,7 @@
                             </div>
                             <div class="task__content">
                                 <h3 class="task__name">{{ $task['name'] }}</h3>
-                                {{--                            <p class="task__category">{{ $category['name'] }}</p>--}}
+                                {{-- <p class="task__category">{{ $category['name'] }}</p> --}}
                                 <p class="task__category">{{ $task->category['name'] }}</p>
                                 <p class="task__description">{{ $task['description'] }}</p>
                             </div>
