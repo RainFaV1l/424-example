@@ -8,12 +8,12 @@
             <h1>Регистрация</h1>
             @if($errors->all())
                 @foreach($errors->all() as $error)
-                    {{ $error }}
+                    <p style="color: red">{{ $error }}</p>
                 @endforeach
             @endif
             <form action="{{ route('user.register') }}" method="post" class="login__form">
                 @csrf
-                <input class="default-input" type="text" name="name" placeholder="Имя" value="{{ old('name') }}">
+                <input @error('name') style="border: 1px solid red" @enderror class="default-input" type="text" name="name" placeholder="Имя" value="{{ old('name') }}">
                 <label class="error-text">
                     @error('name') {{ $message }}  @enderror
                 </label>

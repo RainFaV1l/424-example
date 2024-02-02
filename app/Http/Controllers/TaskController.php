@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+//        if(!auth()->user() || auth()->user()->role_id !== 3) {
+//            abort(403);
+//        }
+    }
+
     public function index(Request $request) {
 
         $categories = TaskCategory::query()->orderBy('name')->get();
@@ -42,7 +51,7 @@ class TaskController extends Controller
 
     public function store(StoreRequest $request) {
 
-        $data = $request->all();
+        $data = $request->validated();
 
         if($request->hasFile('task_image_path')) {
 
@@ -74,17 +83,17 @@ class TaskController extends Controller
 
     public function update(Task $task, UpdateRequest $request) {
 
-        $data = $request->all();
+        $data = $request->validated();
 
         if($request->hasFile('task_image_path')) {
 
             $data['task_image_path'] = $request->file('task_image_path')->store('public/tasks');
 
-            if(Storage::fileExists($task->task_image_path)) {
-
-                Storage::delete($task->task_image_path);
-
-            }
+//            if(Storage::fileExists($task->task_image_path)) {
+//
+//                Storage::delete($task->task_image_path);
+//
+//            }
 
         }
 
@@ -100,13 +109,13 @@ class TaskController extends Controller
 
 //        Task::query()->where('id', $id)->delete();
 
-        $condition = Storage::fileExists($task->task_image_path);
+//        $condition = Storage::fileExists($task->task_image_path);
 
 //        if($condition) {
 //            Storage::delete($task->task_image_path);
 //        }
 
-        $condition ? Storage::delete($task->task_image_path) : '';
+//        $condition ? Storage::delete($task->task_image_path) : '';
 
         $task->delete();
 

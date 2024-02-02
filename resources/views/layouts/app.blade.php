@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="wrapper">
+        @include('components.message')
         @include('components.header')
         <main class="main">
             @yield('content')

@@ -19,6 +19,10 @@
                 <label class="error-text">
                     @error('name') {{ $message }}  @enderror
                 </label>
+                <input class="default-input" type="number" name="price" value="{{ $task->price }}" placeholder="Цена">
+                <label class="error-text">
+                    @error('price') {{ $message }}  @enderror
+                </label>
                 <textarea class="default-input" name="description" placeholder="Название">{{ $task->description }}</textarea>
                 <label class="error-text">
                     @error('description') {{ $message }}  @enderror

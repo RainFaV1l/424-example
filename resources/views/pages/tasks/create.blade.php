@@ -18,13 +18,18 @@
                 <label class="error-text">
                     @error('name') {{ $message }}  @enderror
                 </label>
+                <input class="default-input" type="number" name="price" value="{{ old('price') }}" placeholder="Цена">
+                <label class="error-text">
+                    @error('price') {{ $message }}  @enderror
+                </label>
                 <textarea class="default-input" name="description" placeholder="Название">{{ old('description') }}</textarea>
                 <label class="error-text">
                     @error('description') {{ $message }}  @enderror
                 </label>
                 <select class="default-input" name="task_categories_id">
                     @foreach($categories as $category)
-                        <option @if($category->id === (int) old('task_categories_id')) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option @selected($category->id == old('task_categories_id')) value="{{ $category->id }}">{{ $category->name }}</option>
+{{--                        <option @selected($category->id === (int) old('task_categories_id')) value="{{ $category->id }}">{{ $category->name }}</option>--}}
                     @endforeach
                 </select>
                 <label class="error-text">

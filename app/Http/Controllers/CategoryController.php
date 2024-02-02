@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    // public function __construct() {
-    //     if(!auth()->user() || auth()->user()->role_id !== 3) {
-    //         abort(403);
-    //     }
-    // }
+//     public function __construct() {
+//         if(!auth()->user() || auth()->user()->role_id !== 3) {
+//             abort(403);
+//         }
+//     }
 
     public function index() {
 
@@ -32,7 +32,9 @@ class CategoryController extends Controller
 
     public function store(StoreRequest $request) {
 
-        TaskCategory::query()->create($request->all());
+        $data = $request->validated();
+
+        TaskCategory::query()->create($data);
 
         return redirect()->back();
 
@@ -42,15 +44,15 @@ class CategoryController extends Controller
 
 //        TaskCategory::query()->where('id', $id)->delete();
 
-        foreach ($category->tasks as $task) {
-
-            if(Storage::fileExists($task->task_image_path)) {
-
-                Storage::delete($task->task_image_path);
-
-            }
-
-        }
+//        foreach ($category->tasks as $task) {
+//
+//            if(Storage::fileExists($task->task_image_path)) {
+//
+//                Storage::delete($task->task_image_path);
+//
+//            }
+//
+//        }
 
         $category->delete();
 
@@ -58,9 +60,31 @@ class CategoryController extends Controller
 
     }
 
+//    public function destroy($id) {
+//
+//        TaskCategory::query()->where('id', $id)->delete();
+//
+////        foreach ($category->tasks as $task) {
+////
+////            if(Storage::fileExists($task->task_image_path)) {
+////
+////                Storage::delete($task->task_image_path);
+////
+////            }
+////
+////        }
+//
+////        $category->delete();
+//
+//        return back();
+//
+//    }
+
     public function update(TaskCategory $category, UpdateRequest $request) {
 
-        $category->update($request->all());
+        $data = $request->validated();
+
+        $category->update($data);
 
         return back();
 

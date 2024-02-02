@@ -332,4 +332,40 @@ input {
     border: 1px solid rgba(0, 0, 0, 25%);
     border-radius: 30px;
     color: var(--dark);;
+    transition: all .3s ease-in-out;
+}
+
+.task-categories__item:hover {
+    background-color: cornflowerblue;
+    color: white;
+    border-color: transparent;
+}
+
+.message {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 15px 30px;
+    color: #ffffff;
+    border-radius: 7px;
+}
+
+.message.message_error {
+    background-color: crimson;
+}
+
+.message.message_show {
+    background-color: cornflowerblue;
+}
+
+.message.message_success {
+    background-color: chartreuse;
+}
+
+.task__count {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }

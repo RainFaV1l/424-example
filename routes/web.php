@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Middleware\Admin;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +30,26 @@ use App\Http\Controllers\UserController;
 // Route::namespace('')->
 
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-    Route::get('/register', 'loginPage')->name('user.loginPage');
-    Route::get('/login', 'registerPage')->name('user.registerPage');
+    Route::get('/register', 'registerPage')->name('user.registerPage');
+    Route::get('/login', 'loginPage')->name('user.loginPage');
     Route::post('/register', 'register')->name('user.register');
     Route::post('/login', 'login')->name('user.login');
     Route::post('/logout', 'logout')->name('user.logout');
+    Route::get('/profile', 'profile')->name('user.profile')->middleware('auth');
 });
 
+Route::controller(OrderController::class)->prefix('orders')->group(function () {
+    Route::post('/{order}/plus', 'plus')->name('orders.plus');
+    Route::post('/{order}/minus', 'minus')->name('orders.minus');
+});
+
+Route::controller(CartController::class)->prefix('carts')->middleware(['auth'])->group(function () {
+    Route::post('/{cart}/checkout', 'checkout')->name('carts.checkout');
+    Route::post('/tasks/{task}', 'store')->name('cart.store');
+    Route::post('/{cart}/destroy', 'destroy')->name('cart.destroy');
+    Route::post('/{cart}/tasks/{task}/destroy', 'destroyCartTask')->name('cart.task.destroy');
+    Route::get('/', 'index')->name('cart.index');
+});
 
 Route::controller(CategoryController::class)->prefix('category')->middleware(['admin'])->group(function () {
     Route::get('/', 'index')->name('category.index');
@@ -49,7 +63,7 @@ Route::controller(\App\Http\Controllers\IndexController::class)->group(function 
     Route::get('/', 'index')->name('index.index');
 });
 
-Route::controller(TaskController::class)->prefix('tasks')->middleware(['admin'])->group(function () {
+Route::controller(TaskController::class)->prefix('tasks')->middleware('auth')->group(function () {
     Route::get('/', 'index')->name('tasks.index');
     Route::get('/create', 'create')->name('tasks.create');
     Route::post('/', 'store')->name('tasks.store');

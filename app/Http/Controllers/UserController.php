@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreRequest;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function profile() {
+
+        $carts = Cart::query()->where('user_id', auth()->user()->id)->orderByDesc('id')->get();
+
+        return view('pages.profile.index', compact('carts'));
+
+    }
+
     public function loginPage() {
         return view('pages.login');
     }
@@ -43,9 +52,7 @@ class UserController extends Controller
 
         if(!auth()->attempt($user)) {
 
-            return back()->withErrors([
-                'invalid_password' => 'Неверный логин или пароль'
-            ])->withInput($request->all());
+            return back()->withErrors(['invalid_password' => 'Неверный логин или пароль'])->withInput($request->all());
 
         }
 

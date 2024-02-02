@@ -25,6 +25,8 @@ class User extends Authenticatable
         'surname',
     ];
 
+//    protected $table = 'users';
+
     // protected $guarded = [];
 
     /**
@@ -46,4 +48,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function carts() {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
 }

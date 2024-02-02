@@ -23,6 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255|string',
+            'price' => 'required|numeric',
             'description' => 'required|max:2000|string',
             'task_categories_id' => 'required|int|exists:task_categories,id',
             'task_image_path' => 'required|image',

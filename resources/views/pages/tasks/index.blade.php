@@ -10,7 +10,9 @@
 
             <div class="task__header">
                 <h1 class="task__title">Задачи</h1>
-                <a href="{{ route('tasks.create') }}" class="button">Добавить</a>
+                @if(auth()->user()->role_id === 3)
+                    <a href="{{ route('tasks.create') }}" class="button">Добавить</a>
+                @endif
             </div>
 
             <ul class="task__categories task-categories">
@@ -35,14 +37,22 @@
                                 {{-- <p class="task__category">{{ $category['name'] }}</p> --}}
                                 <p class="task__category">{{ $task->category['name'] }}</p>
                                 <p class="task__description">{{ $task['description'] }}</p>
+                                <p class="task__description">Цена: {{ $task['price'] }}</p>
                             </div>
                         </div>
                         <div class="task__buttons">
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="post">
+
+                            @if(auth()->user()->role_id === 3)
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="post">
+                                    @csrf
+                                    <button class="button" type="submit">Удалить</button>
+                                </form>
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="button">Редактировать</a>
+                            @endif
+                            <form action="{{ route('cart.store', $task->id) }}" method="post">
                                 @csrf
-                                <button class="button" type="submit">Удалить</button>
+                                <button class="button" type="submit">Добавить в корзину</button>
                             </form>
-                            <a href="{{ route('tasks.edit', $task->id) }}" class="button">Редактировать</a>
                         </div>
                     </div>
                 @endforeach
